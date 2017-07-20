@@ -1,0 +1,17 @@
+#home-container { 
+    background-image: url("/assets/images/KimFBProfile.jpg");
+    background-size: cover;
+    background-position: center;
+    position: absolute;
+    min-width: 100%;
+    min-height: 100%;
+
+}
+
+#home-container h1 {
+    color: white;
+    font-size: 45px;
+    font-family: cursive;
+    text-align: center;
+    margin-top: 0;
+}
