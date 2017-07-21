@@ -1,6 +1,10 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router'
+import { RouterModule, Routes } from '@angular/router';
+import { AngularFireModule } from 'angularfire2'
+import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { AngularFireAuthModule } from 'angularfire2/auth';
+
 
 // Angular Material Animation Module
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -44,6 +48,15 @@ const appRoutes: Routes = [
   }
 ]
 
+const firebaseConfig = {
+  apiKey: 'AIzaSyBn34r_hVyzUc5I7MiH_Ee9AEvUq56dHtQ',
+  authDomain: 'kris-and-kim.firebaseapp.com',
+  databaseURL: 'https://kris-and-kim.firebaseio.com',
+  projectId: 'kris-and-kim',
+  storageBucket: 'kris-and-kim.appspot.com',
+  messagingSenderId: '159898231734'
+};
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -59,9 +72,13 @@ const appRoutes: Routes = [
     FlexLayoutModule,
     RouterModule.forRoot(
       appRoutes
-    )
+    ),
+    AngularFireModule.initializeApp( firebaseConfig ),
+    AngularFireDatabaseModule,
+    AngularFireAuthModule
   ],
   providers: [],
   bootstrap: [AppComponent]
-})
+} )
+
 export class AppModule { }

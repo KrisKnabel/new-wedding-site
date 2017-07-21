@@ -25,6 +25,11 @@
     Gifts  
   </a>
 </nav>
+<ul>
+  <li class="text" *ngFor="let rsvp of rsvps | async">
+    {{rsvp.name}}
+  </li>
+</ul>
 <router-outlet></router-outlet>
 
 

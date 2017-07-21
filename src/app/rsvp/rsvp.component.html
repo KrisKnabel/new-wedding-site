@@ -1,3 +1,5 @@
-<p>
-  rsvp works!
-</p>
+<ul>
+  <li class="text" *ngFor="let rsvp of rsvps | async">
+    {{rsvp.name}}
+  </li>
+</ul>
