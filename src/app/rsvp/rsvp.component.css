@@ -1,0 +1,24 @@
+form, input, md-input-container {
+ width: 500px;
+}
+
+md-card { 
+  margin-top: 100px;
+  opacity: .85;
+}
+
+md-card.box-shadow {
+  box-shadow: 10px 10px 5px #888888;
+}
+
+div.background {
+    background-image: url("/assets/images/SittingUnderTree.jpg");
+    background-size: cover;
+    background-position: center;
+    position: absolute;
+    width: 100%;
+    min-width: 550px;
+    height: 100%;
+    min-height: 900px;
+    opacity: 0.4;
+}

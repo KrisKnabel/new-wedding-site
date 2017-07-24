@@ -1,10 +1,10 @@
 
 <nav md-tab-nav-bar>
   <a md-tab-link
-     routerLink=""
+     routerLink="/home"
      routerLinkActive #rla0="routerLinkActive"
      [active]="rla0.isActive">
-    Home
+    <md-icon>home</md-icon>
   </a>
   <a md-tab-link
      routerLink="/location"
@@ -25,11 +25,6 @@
     Gifts  
   </a>
 </nav>
-<ul>
-  <li class="text" *ngFor="let rsvp of rsvps | async">
-    {{rsvp.name}}
-  </li>
-</ul>
 <router-outlet></router-outlet>
 
 

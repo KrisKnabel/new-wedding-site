@@ -1,19 +1,23 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+
+// Angular Material Required Animation Module
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 import { RouterModule, Routes } from '@angular/router';
+
 import { AngularFireModule } from 'angularfire2'
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 
 
-// Angular Material Animation Module
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
 // Gesture Support for Angular Material
 import 'hammerjs';
 
+import { FormsModule, ReactiveFormsModule } from '@angular/forms'
+
 // Angular Material Component Modules
-import { MdTabsModule } from '@angular/material';
+import { MdTabsModule, MdInputModule, MdCardModule, MdIconModule } from '@angular/material';
 
 // Angular Flex Layout
 import { FlexLayoutModule } from '@angular/flex-layout'
@@ -27,7 +31,7 @@ import { HomeComponent } from './home/home.component';
 
 const appRoutes: Routes = [
   {
-    path: '',
+    path: 'home',
     component: HomeComponent
   },
   {
@@ -44,7 +48,7 @@ const appRoutes: Routes = [
   },
   {
     path: '**',
-    redirectTo: ''
+    redirectTo: 'home'
   }
 ]
 
@@ -68,7 +72,8 @@ const firebaseConfig = {
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    MdTabsModule,
+    FormsModule, ReactiveFormsModule,
+    MdTabsModule, MdInputModule, MdCardModule, MdIconModule,
     FlexLayoutModule,
     RouterModule.forRoot(
       appRoutes

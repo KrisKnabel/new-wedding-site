@@ -1,5 +1,28 @@
-<ul>
-  <li class="text" *ngFor="let rsvp of rsvps | async">
-    {{rsvp.name}}
-  </li>
-</ul>
+<div class="background"></div>
+<div id="form-container" fxLayout="column" fxLayoutAlign="center center">
+    <md-card class="box-shadow">
+      <form [formGroup]="rsvpForm" (ngSubmit)="submitRsvp(rsvpForm.value)">
+        <md-input-container fxLayout="row">
+          <input type="text" mdInput formControlName="name" placeholder="Name" value="John Doe">
+        </md-input-container> 
+        <md-input-container fxLayout="row">
+          <input type="text" mdInput formControlName="email" placeholder="Email" value="JohnDoe@gmail.com">
+        </md-input-container> 
+        <md-input-container fxLayout="row">
+          <span mdPrefix>+1 &nbsp;</span>
+          <input type="text" mdInput formControlName="phoneNumber" placeholder="Phone Number" value="555-555-5555">
+        </md-input-container> 
+        <md-input-container *ngFor="let guest of guests" fxLayout="row">
+          <input type="text" mdInput formControlName="guest" placeholder="Additional Guest" value="Wife/Husband/Child/Boo Thang">
+        </md-input-container> 
+        <md-input-container fxLayout="row">
+          <textarea mdInput formControlName="comments" placeholder="Questions/Comments" value=""></textarea>
+        </md-input-container> 
+
+        <button (ngClick)="addNewGuest()">Add Additional Guest</button>
+
+        <input type="submit" class="" value="Submit Form" [disabled]="!rsvpForm.valid">
+
+      </form>
+    </md-card>
+</div>
