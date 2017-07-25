@@ -1,7 +1,7 @@
+import { ValidateFn } from 'codelyzer/walkerFactory/walkerFn';
 import { Observable } from 'rxjs/Observable';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Guest } from './guest'
+import { FormBuilder, FormGroup, FormArray, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-rsvp',
@@ -10,30 +10,29 @@ import { Guest } from './guest'
 })
 export class RsvpComponent implements OnInit {
 
-  rsvpForm: FormGroup;
+  public rsvpForm: FormGroup;
   submittedForm: any;
-  name: string = '';
-  email: string = '';
-  phoneNumber: string = '';
-  comments: string = '';
-  guests: Guest[] = [];
-
+  name = '';
+  email = '';
+  phoneNumber = '';
+  comments = '';
+  numGuests = 0;
 
   constructor( private fb: FormBuilder ) {
     this.rsvpForm = fb.group({
-      'name': [ 
+      'name': [
         null,
         Validators.compose([
           Validators.required,
           Validators.minLength(5)
-        ]) 
+        ])
       ],
-      'email': [ 
-        null, 
-        Validators.compose([ 
-          Validators.required, 
+      'email': [
+        null,
+        Validators.compose([
+          Validators.required,
           Validators.email,
-          Validators.minLength(5) 
+          Validators.minLength(5)
         ])
       ],
       'phoneNumber': [
@@ -43,27 +42,49 @@ export class RsvpComponent implements OnInit {
           Validators.minLength(10)
         ])
       ],
-      'guest': [
-        null,
-        Validators.compose([
-          Validators.required,
-          Validators.minLength(3)
-        ])
-      ],
+      'guests': this.fb.array([]),
       'comments': [null, [] ]
     });
   }
-  
-  ngOnInit() {}
 
-  submitRsvp() { 
+  ngOnInit() {
+    // this.addNewGuestInput();
+  }
+
+  initGuest() {
+      return this.fb.group({
+          guestName: [ '', Validators.required ],
+          type: [ null, [] ]
+      });
+  }
+
+  submitRsvp() {
     this.name = this.submittedForm.name;
     this.email = this.submittedForm.email;
     this.phoneNumber = this.submittedForm.phoneNumber;
     this.comments = this.submittedForm.comments;
   }
 
-  addNewGuest() {
-    this.guests.push( new Guest( '', false ) );
+  // addNewGuestInput() {
+  //   this.guests.push( new Guest( '', false ) );
+  // }
+
+  addNewGuestInput() {
+      this.numGuests++;
+      const control = <FormArray>this.rsvpForm.controls['guests'];
+      const addrCtrl = this.initGuest();
+
+      control.push(addrCtrl);
+
+      /* subscribe to individual address value changes */
+      // addrCtrl.valueChanges.subscribe(x => {
+      //   console.log(x);
+      // })
   }
+
+    removeGuestInput(i: number) {
+      this.numGuests--;
+      const control = <FormArray>this.rsvpForm.controls['guests'];
+      control.removeAt(i);
+    }
 }

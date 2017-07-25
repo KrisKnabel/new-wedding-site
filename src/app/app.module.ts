@@ -17,7 +17,7 @@ import 'hammerjs';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 
 // Angular Material Component Modules
-import { MdTabsModule, MdInputModule, MdCardModule, MdIconModule } from '@angular/material';
+import { MdTabsModule, MdInputModule, MdCardModule, MdIconModule, MdRadioModule } from '@angular/material';
 
 // Angular Flex Layout
 import { FlexLayoutModule } from '@angular/flex-layout'
@@ -28,6 +28,7 @@ import { LocationComponent } from './location/location.component';
 import { RsvpComponent } from './rsvp/rsvp.component';
 import { GiftsComponent } from './gifts/gifts.component';
 import { HomeComponent } from './home/home.component';
+import { GuestComponent } from './rsvp/guest.component'
 
 const appRoutes: Routes = [
   {
@@ -67,13 +68,14 @@ const firebaseConfig = {
     LocationComponent,
     RsvpComponent,
     GiftsComponent,
-    HomeComponent
+    HomeComponent,
+    GuestComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     FormsModule, ReactiveFormsModule,
-    MdTabsModule, MdInputModule, MdCardModule, MdIconModule,
+    MdTabsModule, MdInputModule, MdCardModule, MdIconModule, MdRadioModule,
     FlexLayoutModule,
     RouterModule.forRoot(
       appRoutes
