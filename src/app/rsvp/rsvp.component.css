@@ -1,10 +1,23 @@
-form, input, md-input-container {
- width: 500px;
+form, input, md-input-container, textarea {
+ width: 600px;
+}
+
+textarea {
+  height: 60px;
 }
 
 md-card { 
-  margin-top: 100px;
   opacity: .85;
+  border: 1px solid rgba( 200, 200, 200, .7);
+  box-shadow: 4px 4px 3px #888888;
+  margin-bottom: 10px;
+  padding: 5px;
+  position: relative;
+}
+
+#form-card {
+  margin-top: 100px;
+  padding: 25px;
 }
 
 md-card.box-shadow {
@@ -20,5 +33,36 @@ div.background {
     min-width: 550px;
     height: 100%;
     min-height: 900px;
-    opacity: 0.4;
+    opacity: 0.5;
+}
+
+#new-guest-button { 
+  margin: 10px;
+  text-align: center;
+  cursor: pointer;
+}
+
+#new-guest-container md-icon {
+  cursor: pointer;
+  height: auto;
+  line-height: 38px;
+}
+
+#guest-count {
+  margin-right: 30px;
+}
+
+.remove-button { 
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  opacity: .6;
+  transform: scale(.8);
+  transition: all .3s ease-in-out;
+  cursor: pointer;
+}
+
+.remove-button:hover {
+  opacity: 1;
+  transform: scale(1.3);
 }

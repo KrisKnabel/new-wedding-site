@@ -1,31 +1,43 @@
 <div class="background"></div>
 <div id="form-container" fxLayout="column" fxLayoutAlign="center center">
-    <md-card class="box-shadow">
+    <md-card id="form-card" class="box-shadow">
+      <h4>Please fill out and save to help us get a head count.</h4>
       <form [formGroup]="rsvpForm" (ngSubmit)="submitRsvp(rsvpForm.value)">
         <md-input-container fxLayout="row">
-          <input type="text" mdInput formControlName="name" placeholder="Name" value="John Doe">
+          <input type="text" mdInput formControlName="name" placeholder="Your Name" value="">
         </md-input-container> 
         <md-input-container fxLayout="row">
-          <input type="text" mdInput formControlName="email" placeholder="Email" value="JohnDoe@gmail.com">
+          <input type="text" mdInput formControlName="email" placeholder="Email" value="">
         </md-input-container> 
         <md-input-container fxLayout="row">
-          <span mdPrefix>+1 &nbsp;</span>
+          <span mdPrefix>+1 &nbsp; &nbsp; &nbsp;</span>
           <input type="text" mdInput formControlName="phoneNumber" placeholder="Phone Number" value="555-555-5555">
         </md-input-container> 
+        <div fxLayout="row" fxLayoutAlign="center center">
+          <h5>Additional Guests</h5>
+        </div>
         <div *ngIf="numGuests > 0" formArrayName="guests">
-          <div *ngFor="let guest of rsvpForm.controls.guests.controls; let i=index">
+          <md-card *ngFor="let guest of rsvpForm.controls.guests.controls; let i=index" [@guestFormAnimation]="'in'" >
+            <a class="remove-button" type="button" (click)="removeGuestInput()"><md-icon>clear</md-icon></a>
             <div [formGroupName]="i">
-              <app-guest [group]="rsvpForm.controls.guests.controls[i]"></app-guest>
+              <div fxLayout="row" fxLayoutAlign="center center">
+                <span id="guest-count">{{i + 1}} &nbsp;</span>
+                <app-guest [group]="rsvpForm.controls.guests.controls[i]"></app-guest>
+              </div>
             </div>
-          </div>   
+          </md-card>   
+        </div>
+        <div id="new-guest-container" fxLayout="row" fxLayoutAlign="center bottom">
+          <md-icon (click)="addNewGuestInput()">add</md-icon>
+          <a id="new-guest-button" type="button" (click)="addNewGuestInput()">Add Guest</a>
         </div>
         <md-input-container fxLayout="row">
           <textarea mdInput formControlName="comments" placeholder="Questions/Comments" value=""></textarea>
         </md-input-container> 
 
-        <button type="button" (click)="addNewGuestInput()">Add Additional Guest</button>
-
-        <input type="submit" class="" value="Submit Form" [disabled]="!rsvpForm.valid">
+        <div fxLayout="row" fxLayoutAlign="center center">
+          <button type="submit" md-raised-button class="" [disabled]="!rsvpForm.valid">{{ rsvpForm.pristine ? 'Saved' : 'Save RSVP' }}</button>
+        </div>
 
       </form>
     </md-card>

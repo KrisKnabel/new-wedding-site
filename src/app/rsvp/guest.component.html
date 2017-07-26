@@ -1,8 +1,15 @@
-<div [formGroup]="guestForm">
+<div [formGroup]="guestForm" layout-nowrap>
   <md-input-container>
-    <input type="text" mdInput formControlName="guestName" placeholder="Additional Guest" value="New Guest">
+    <input type="text" mdInput formControlName="guestFirstName" placeholder="Guest First Name" value="">
   </md-input-container> 
   <md-input-container>
-    <input type="text" mdInput formControlName="type" placeholder="Is Child?" value="Adult">
+    <input type="text" mdInput formControlName="guestLastName" placeholder="Guest Last Name" value="">
   </md-input-container> 
+    <md-select placeholder="Guest Type" formControlName="type" >
+    <md-option *ngFor="let guestType of guestTypes" [value]="guestType">
+      {{guestType}}
+    </md-option>
+  </md-select>
 </div>
+
+ <!-- <input type="password" [(ngModel)] = "password" [ngModelOptions]="{standalone: true}" /> -->
